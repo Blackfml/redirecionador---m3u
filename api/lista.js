@@ -41,7 +41,7 @@ async function mesclarListas() {
 export default async function handler(req, res) {
   try {
     const listaMesclada = await mesclarListas();
-    res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8'); // Muda aqui para mostrar no navegador
     res.status(200).send(listaMesclada);
   } catch (error) {
     res.status(500).send('Erro ao gerar lista M3U');
