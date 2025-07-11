@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const urls = [
   'https://raw.githubusercontent.com/Blackfml/minha-lista-m3u/main/lista_parte1.m3u',
