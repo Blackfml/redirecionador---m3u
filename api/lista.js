@@ -1,4 +1,4 @@
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 const urls = [
   'https://raw.githubusercontent.com/Blackfml/minha-lista-m3u/main/lista_parte1.m3u',
@@ -41,7 +41,9 @@ async function mesclarListas() {
 export default async function handler(req, res) {
   try {
     const listaMesclada = await mesclarListas();
-    res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
+
+    res.setHeader('Content-Type', 'application/octet-stream');
+    res.setHeader('Content-Disposition', 'attachment; filename="lista_completa.m3u"');
     res.status(200).send(listaMesclada);
   } catch (error) {
     res.status(500).send('Erro ao gerar lista M3U');
